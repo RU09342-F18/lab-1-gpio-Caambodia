@@ -69,7 +69,7 @@ int main(void)
   WDTCTL = WDTPW+WDTHOLD;                   // Stop WDT
   P1DIR |= BIT0;                            // Set P1.0 to output direction
   P1DIR &= ~BIT1;                           // Set P1.1 to input direction
-  P1OUT |= BIT1;                            // Set P1.1 resistor to pull-down
+  P1OUT |= BIT1;                            // Set P1.1 resistor to pull-up
   P1REN |= BIT1;                            // Set P1.1 resistor to on
   int j;                                    // Declaring the j integer variable
 
