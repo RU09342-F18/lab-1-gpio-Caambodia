@@ -1,18 +1,13 @@
-# Button Blink
-Now that you have looked at blinking the LED from some built in delay, but what if we wanted to control the state of the LED by a button? You may think "Why would I need a Microcontroller to perform the job of a switch?". And that is where you come in. The bare minimum for this part of the lab is to essentially replicate a switch with your development board.
+## Overview:
+The main.c files function to turn an LED on when a button is pressed and turn it off when that button is released. Effectively, this code is just a momentary switch.
 
-# YOU NEED TO CREATE THE FOLLOWING FOLDERS
-* MSP430G2553
-* MSP(FILL IN THE PROCESSOR YOU ARE USING)
+## Description of Code:
+Blinking an LED is a simple task in terms of code. Texas Instruments provides this code in their documentation for the MSP430 boards, and so most of what is used here is their code. Minor adjustments were made to the code to allow for button blink.
 
-## README
-Remember to replace this README with your README once you are ready to submit. I would recommend either making a copy of this file or taking a screen shot. There might be a copy of all of these README's in a folder on the top level depending on the exercise. Make sure you talk about how your button is configured (momentary or continuous. Normally open or closed. Does the button press indicate when the LED should be on or off.)
+The line `P1DIR |= 0x01` sets the pin P1.0 as an output. This is the pin on both boards used where the LED is located, and so we set it as an output so we can control it with the rest of our code. By ORing `P1DIR` with `0x01` or `00000001`, we set the least significant bit in `P1DIR` to 1, which makes it an output. The 0s allow us to avoid disturbing the rest of the bits in `P1DIR`. In order to set the button on P1.3 as an input, we must AND `P1DIR` with `~BIT3` or `11110111`, setting the bit to 0. On the MSP430F5529, the button is found on P4.7.
 
-## Extra Work
-What can we do to make this a little bit more worthy of needing a microcontroller.
+In order to use a button, we also have to enable a pull-down/pull-up resistor. On the MSP430G2553, we run the line `P1REN |= BIT3`, which enables the pull-down resistor. Since the resistor is set as a pull-down resistor by running `P1OUT &= ~BIT3`, the bit is 0 by default and this line is not neccesary. However, on the MSP430F5529, a pull-up resistor is required on P4.7. In this case, we must run `P1OUT |= BIT7` to set the resistor as a pull-up.
 
-### Button Based Speed Control
-Much like the UART controlled speed, what if you could cycle between speeds based on a button press? The speed could progress through a cycle of "Off-Slow-Medium-Fast" looping back when you hit the end.
+The `for` loop simply set j as the `P1IN & BIT3`, which means that we should only ever see `j` as a 0 or 8. Therefore, we can watch for when this switches and toggle the LED when the button is pressed. This code makes the button a momentary switch, which means that it will only activate the LED while the button is being pressed down.
 
-### Color Change
-What if upon a button press, the LED which was blinking changed. Some of the development boards contain two LEDs, so you could swap between a Red and a Green LED.
+No input is needed for this code. It will run on its own without any interference. 
