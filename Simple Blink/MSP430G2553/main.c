@@ -61,6 +61,9 @@
 //  December 2010
 //   Built with CCS Version 4.2.0 and IAR Embedded Workbench Version: 5.10
 //******************************************************************************
+// Created: 9/12/18
+// Last Edited: 9/19/18
+// Author: Cameron Bendzynski
 
 #include <msp430.h>                         // includes header file for MSP430
 
