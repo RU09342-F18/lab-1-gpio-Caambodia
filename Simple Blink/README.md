@@ -1,26 +1,11 @@
-# Simple Blink
-For starters, you will need to blink one of the on-board LED's at a particular rate. It is up to you to determine what rate you want to blink it at, however it has to be symmetrical (50% Duty Cycle), meaning equal times on and off. You should attempt multiple different speeds before moving on to the next part of the lab.
+## Overview:
+The main.c files function to blink an LED on two separate MSP430 boards with a delay of 25000 clock cycles between blinks.
 
-## YOU NEED TO CREATE THE FOLLOWING FOLDERS
-* MSP430G2553
-* MSP(FILL IN WHAT BOARD YOU ARE USING)
+## Description of Code:
+Blinking an LED is a simple task in terms of code. Texas Instruments provides this code in their documentation for the MSP430 boards, and so most of what is used here is their code.
 
-## How to not damage your processor
-Remember that your microprocessors are not hooked up to a nuclear power plant and they can only provide a finite amount of current and power to your attached devices. For each of your processors you should see what the maximum supply current is for the digital output pins and note it in your designs. Diodes are an interesting device where the V-I curve becomes almost a short circuit after only a couple volts. If you have a diode biased to operate at say 1 volt above its turn on voltage, you are going to be drawing quite a bit of amperage.
+The line `P1DIR |= 0x01` sets the pin P1.0 as an output. This is the pin on both boards used where the LED is located, and so we set it as an output so we can control it with the rest of our code. By ORing `P1DIR` with `0x01` or `00000001`, we set the least significant bit in `P1DIR` to 1, which makes it an output. The 0s allow us to avoid disturbing the rest of the bits in `P1DIR`.
 
-Before you actually begin this lab, take the time to mess around with the simulation below and understand what the importance of the series resistance is in the design. What does the resistance prevent from happening? Does having this resistance impact the performance of the LED?
+The `for` loop does two major things: toggle `BIT0`, or `0x01`, of `P1OUT` on or off depending on what its current state is, and count to 25000 based on clock cycles. The loop immediately toggles P1.0, setting it to a 1 to start. This turns the LED on, since we previously set P1.0 to an output. If we had not done this, nothing would happen. Then, integer `i` is set to 25000 and a do-while loop is initialized. The loop decrements `i` by one whenever `i` is not equal to 0. The program effectively waits for 25000 clock cycles, then exits the loop and toggles P1.0 to off. This continues indefinitely.
 
-<a href="http://everycircuit.com/circuit/5180823226810368">LED Current - EveryCircuit</a><br>
-<iframe width="560" height="360" src="http://everycircuit.com/embed/5180823226810368" frameborder="0"></iframe>
-
-## README
-Remember to replace this README with your README once you are ready to submit. I would recommend either making a copy of this file or taking a screen shot. There might be a copy of all of these README's in a folder on the top level depending on the exercise.
-
-## Extra Work
-Since this is so basic, there are a few things which might be interesting to implement.
-
-### UART Control: Single Character
-For starters, it would be interesting to tie in some of the UART code that was used before into this project. You might want to have the speed of the blinking controlled by a character sent over UART. For example, 's' could be a slow setting, 'm' could be medium speed, 'f' could be fast, and 'o' could be off.
-
-### UART Control: Rate Number
-Instead of depending on a character, what if we wanted to send a blinking period in milliseconds? So instead of 's', you could send something like '100' which corresponds to a 100 millisecond delay between the time the LED turns on again. Before you decide to tackle this, I would take a look at using a logic analyzer to see exactly what your computer is sending to your microprocessor. Also remember that the code previously provided will only service the UART Buffer one character at a time.
+No input is needed for this code. It will run on its own without any interference.
