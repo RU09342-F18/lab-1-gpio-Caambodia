@@ -68,7 +68,7 @@ int main(void)
 {
   WDTCTL = WDTPW+WDTHOLD;                   // Stop WDT
   P1DIR |= BIT0;                            // P1.0 set as output
-  P1DIR |= BIT6;                            // P4.7 set as output
+  P1DIR |= BIT6;                            // P1.6 set as output
   volatile unsigned int i;                  // Declares the i variable
   volatile unsigned int j;                  // Declares the j variable
   i = 30000;
@@ -89,7 +89,7 @@ int main(void)
     else
     {
         j = 50000;                          //
-        P1OUT ^= BIT6;                      // Toggle P4.7 using exclusive-OR
+        P1OUT ^= BIT6;                      // Toggle P1.6 using exclusive-OR
     }
   }
 }
