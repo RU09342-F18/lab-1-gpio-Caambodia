@@ -61,6 +61,9 @@
 //  December 2010
 //   Built with CCS Version 4.2.0 and IAR Embedded Workbench Version: 5.10
 //******************************************************************************
+// Created: 9/12/18
+// Last Edited: 9/19/18
+// Author: Cameron Bendzynski
 
 #include <msp430.h>                         // includes header file for MSP430
 
@@ -71,24 +74,24 @@ int main(void)
   P1DIR |= BIT6;                            // P1.6 set as output
   volatile unsigned int i;                  // Declares the i variable
   volatile unsigned int j;                  // Declares the j variable
-  i = 30000;
-  j = 50000;
+  i = 30000;                                // Initialize the integer i to 30000
+  j = 50000;                                // Initialize the integer j to 50000
 
   while (1)                                 // Runs the loop indefinitely
   {
     if (i != 0)
-        i--;
+        i--;                                // Decrement when i is not equal to 0
     else
     {
-        i = 30000;                          // Toggle P1.0 using exclusive-OR
-        P1OUT ^= BIT0;
+        i = 30000;                          // Reset the delay to 30000
+        P1OUT ^= BIT0;                      // Toggle P1.0 using exclusive-OR
     }
 
     if (j != 0)
-        j--;
+        j--;                                // Decrement when j is not equal to 0
     else
     {
-        j = 50000;                          //
+        j = 50000;                          // Reset the delay to 50000
         P1OUT ^= BIT6;                      // Toggle P1.6 using exclusive-OR
     }
   }
