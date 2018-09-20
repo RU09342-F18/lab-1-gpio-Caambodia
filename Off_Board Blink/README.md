@@ -8,7 +8,7 @@ The line `P1DIR |= 0x01` sets the pin P1.0 as an output. This is the pin on both
 
 The `while` loop here does a few things. The `if` statement checks if integer `i` is not equal to 0, which it should be at the start of the program, in which case it will decrement by 1. When it reaches 0, the program will reset `i` back to 5000 and toggle the LED. The same procedure is used for the other LED, except the delay is different. This loop continues indefinitely.
 
-For this part of the lab, we disconnected the IC from the board after flashing our code to it, used the board and simple wires for power, and made use of resistors and LEDs to create the same system off-board. Here's a .gif of the LEDs in action.
+For this part of the lab, we disconnected the IC from the board after flashing our code to it, used the board and simple wires for power, and made use of resistors and LEDs to create the same system off-board. Here's a .gif of the LEDs in action:
 
 <img src=https://media.giphy.com/media/2zoLaSzq65YF2ibhmn/giphy.gif>
 
