@@ -10,6 +10,6 @@ The `while` loop here does a few things. The `if` statement checks if integer `i
 
 For this part of the lab, we disconnected the IC from the board after flashing our code to it, used the board and simple wires for power, and made use of resistors and LEDs to create the same system off-board. Here's a .gif of the LEDs in action.
 
-https://media.giphy.com/media/2zoLaSzq65YF2ibhmn/giphy.gif
+<img src=https://media.giphy.com/media/2zoLaSzq65YF2ibhmn/giphy.gif>
 
 No input is needed for this code. It will run on its own without any interference. 
